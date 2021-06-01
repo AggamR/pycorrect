@@ -33,29 +33,28 @@ def correct(word, bank):
             list('asdfghjkl;\''),
             [list('zxcvbnm,.'), ['/', '?']]
     ]
-    
-    print(keys)
 
     score = 0.0
     bestScore = 0.0
     bestWord = ''
-    d = 0
+    d: float
 
     for poss in bank:
         score = 0
         for i in range(len(word)):
             for j in range(int((i+1) / 2)):
-                try:
-                    if word[i+j] == poss[i+j]:
-                        score += (i-j)                 
-                except:
-                    next
+                if word[i+j - 1] == poss[i+j - 1]:
+                    score += (i-j)
                 
+                # Make this not error out every 2 seconds
                 try:
-                    d = 1 / dist2d(word[i+j], poss[i+j], keys)
+                    d = 1 / dist2d(word[i+j - 1], poss[i+j - 1], keys)
                     score += d
-                except:
-                    next
+                except Exception as e:
+                    pass
+        
+        #if len(pos) > len(word):
+            
         
         if score > bestScore:
             bestScore = score
@@ -67,7 +66,7 @@ def correct(word, bank):
 
 
 # The following code is for testing purposes. 
-bank = ['bruh', 'bru', 'bra?', 'bra/']  # bank of possible words to mach for
-word = 'bruy'  # "the typo"
+bank = ['cd', 'ls', 'mkdir', 'mkdirs', 'oops']  # bank of possible words to mach for
+word = 'ops'  # "the typo"
 
 print(correct(word, bank))
