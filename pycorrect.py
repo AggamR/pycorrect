@@ -26,7 +26,7 @@ def dist2d(item1, item2, array):
 
 
 def correct(word, bank):
-    #if word in bank: return word
+    if word in bank: return word
     
     keys = [
             list('qwertyuiop[]'),
