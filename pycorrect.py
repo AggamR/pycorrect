@@ -43,8 +43,11 @@ def correct(word, bank):
         score = 0
         for i in range(len(word)):
             for j in range(int((i+1) / 2)):
-                if word[i+j - 1] == poss[i+j - 1]:
-                    score += (i-j)
+                try:
+                    if word[i+j - 1] == poss[i+j - 1]:
+                        score += (i-j)
+                except:
+                    pass
                 
                 # Make this not error out every 2 seconds
                 try:
@@ -66,7 +69,7 @@ def correct(word, bank):
 
 
 # The following code is for testing purposes. 
-bank = ['cd', 'ls', 'mkdir', 'mkdirs', 'oops']  # bank of possible words to mach for
-word = 'ops'  # "the typo"
+bank = ['bruh', 'cocnbol', 'nilla', 'tozer', 'tomer', 'totzer', 'gomer', 'a']  # bank of possible words to mach for
+word = 'tozer'  # "the typo"
 
 print(correct(word, bank))
